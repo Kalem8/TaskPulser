@@ -13,29 +13,29 @@ function App() {
     { id: 2, nom: 'tâche' },
     { id: 3, nom: 'tâche' }
   ]);
+  const [nouvelleTache, setNouvelleTache] = useState("Sam");
 
   //Comportements
   const handleWrite = (event) => {
-
-    //1. On copie le tableau 
-    const copyTachesArray = [...taches];
-
-    //2. On manipule le tableau
-    const idUnique = new Date().getTime();
-    const updatedTachesArray = copyTachesArray.push({ id: idUnique, nom: event.target.value })
-    console.log(copyTachesArray)
-
-    //3. On met à jour le tableau
-    setTaches(updatedTachesArray);
+    setNouvelleTache(event.target.value)
   }
+  const handleSubmit = (event) => {
+    event.preventDefault();//Empêche le rechargement de la page.
 
-  const handleAdd = (event) => {
-    //Empêche le rechargement de la page.
-    event.preventDefault();
+    //Changer le state en 3 étapes copier/ manipuler/ updater
+    //1.COPIER avec spreadOpperator 
+    const copyTachesArray = [... taches];
+
+    //2.Manipuler
+    const createId = new Date().getTime(); 
+    copyTachesArray.push( { id: createId, nom: nouvelleTache } )
+    
+    //3.Update
+    setTaches(copyTachesArray);
+
   }
-
   const handleDelete = (id) => {
-    // 3 Partie
+    // 3 Partie pour modifier un state
 
     //Copier le state
     const copyTachesArray = [...taches];
@@ -45,7 +45,7 @@ function App() {
 
     //Updater
     setTaches(updatedTachesArray);
-  }
+}
 
   //Render
   return (
@@ -56,12 +56,16 @@ function App() {
           <li key={tache.id} > {tache.nom}
             <button onClick={() => handleDelete(tache.id)}> Terminé ! </button>
           </li>
-
         )}
       </ul>
       <form>
-        <input type="text" placeholder='...' onChange={handleWrite} />
-        <button type='submit' onClick={handleAdd}>+</button>
+        <input 
+        value={nouvelleTache}
+        action="submit" 
+        type="text" placeholder='...' 
+        onChange={handleWrite} 
+        />
+        <button type='submit' onClick={handleSubmit}>+</button>
       </form>
     </div>
   )

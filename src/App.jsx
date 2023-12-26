@@ -7,13 +7,13 @@ import './App.css'
 
 function App() {
   //State
-  const [titre, setTitre] = useState("Titre");
+  const [titre, setTitre] = useState("Listes des tâches");
   const [taches, setTaches] = useState([
-    { id: 1, nom: 'tâche' },
-    { id: 2, nom: 'tâche' },
-    { id: 3, nom: 'tâche' }
+    { id: 1, nom: 'tâche 1' },
+    { id: 2, nom: 'tâche 2' },
+    { id: 3, nom: 'tâche 3' }
   ]);
-  const [nouvelleTache, setNouvelleTache] = useState("Sam");
+  const [nouvelleTache, setNouvelleTache] = useState("");
 
   //Comportements
   const handleWrite = (event) => {

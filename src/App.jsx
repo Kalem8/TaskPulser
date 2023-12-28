@@ -1,8 +1,4 @@
-//J'utilise la méthode .map dans une li pour afficher chaque nom sous forme de li.
-
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
@@ -20,10 +16,10 @@ function App() {
     setNouvelleTache(event.target.value)
   }
   const handleSubmit = (event) => {
-    event.preventDefault();//Empêche le rechargement de la page.
+    event.preventDefault();
 
     //Changer le state en 3 étapes copier/ manipuler/ updater
-    //1.COPIER avec spreadOpperator 
+    //1.COPIER  
     const copyTachesArray = [... taches];
 
     //2.Manipuler
